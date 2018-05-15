@@ -23,14 +23,14 @@
     </article>
     <div class="columns">
       <div class="column">
-        <div class="notification is-info">
+        <div class="notification is-danger">
           <figure class="image is-squre">
             <img src="http://famtimes.co.kr/data/media/image/news_6/201711/20171122144312982.jpg" alt="">
           </figure>
         </div>
       </div>
       <div class="column">
-        <div class="message is-info">
+        <div class="message is-danger">
           <div class="message-header">
             <p>오늘의 개 사진</p>
           </div>
