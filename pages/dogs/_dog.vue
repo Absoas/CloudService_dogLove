@@ -15,11 +15,22 @@
                  <figure class="image is-square">
                      <img :src="image" alt="">
                 </figure>
-              </div>
-          
+              </div>    
          </div>
         </article>
+        <article class="message is-danger">
+            <div class="message-header">
+                <div class="message-body">
+                    <p>{{dogName.toUpperCase()}}의 아품종</p>
+                </div>
 
+                <div class="message-body">
+                    <ol>
+                        <li v-for="subdog in dogList" :key="subdog">{{subdog}}</li>
+                    </ol>
+                </div>
+            </div>
+        </article>
     </section>
 </template>
 <script>
@@ -33,10 +44,12 @@
                 images.push(image.data.message);
 
             }
+            const list = axios.get(`https://dog.ceo/api/breed/${params.dog}/list`);
             
             return {
                 dogName: params.dog,
-                images: images
+                images: images,
+                dogList :list.data.message
             };
         }
     };
