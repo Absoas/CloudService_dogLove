@@ -19,38 +19,41 @@
          </div>
         </article>
         <article class="message is-danger">
-            <div class="message-header">
-                <div class="message-body">
+            <div class="message-header">               
                     <p>{{dogName.toUpperCase()}}의 아품종</p>
-                </div>
+            </div>
 
-                <div class="message-body">
-                    <ol>
-                        <li v-for="subdog in dogList" :key="subdog">{{subdog}}</li>
-                    </ol>
-                </div>
+            <div class="message-body">
+                 <ol>
+                     <li v-for="subdog in dogList" :key="subdog">
+                            {{subdog.toUpperCase()}}
+                      </li>
+                </ol>
             </div>
         </article>
     </section>
 </template>
 <script>
-    import axios from 'axios';
-    export default {
-        async asyncData({ params }) {
-            let maxImg = 4;
-            let images = [];
-            for(let i = 0; i < maxImg; i ++){
-                const image = await axios.get(`https://dog.ceo/api/breed/${params.dog}/images/random`);
-                images.push(image.data.message);
+import axios from "axios";
+export default {
+  async asyncData({ params }) {
+    let maxImg = 4;
+    let images = [];
+    for (let i = 0; i < maxImg; i++) {
+      const image = await axios.get(
+        `https://dog.ceo/api/breed/${params.dog}/images/random`
+      );
+      images.push(image.data.message);
+    }
+    const list = await axios.get(
+      `https://dog.ceo/api/breed/${params.dog}/list`
+    );
 
-            }
-            const list = axios.get(`https://dog.ceo/api/breed/${params.dog}/list`);
-            
-            return {
-                dogName: params.dog,
-                images: images,
-                dogList :list.data.message
-            };
-        }
+    return {
+      dogName: params.dog,
+      images: images,
+      dogList: list.data.message
     };
+  }
+};
 </script>
