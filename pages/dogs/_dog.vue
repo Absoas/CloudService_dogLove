@@ -34,6 +34,7 @@
     </section>
 </template>
 <script>
+
 import axios from "axios";
 export default {
   async asyncData({ params }) {
